@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <title>dhaLewis AI Video Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">▶</span><span>dhaLewis <b>Studio</b><small>AI VIDEO CREATOR</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#"><span>✦</span> Create video</a>
+      <a class="nav" href="#library"><span>▤</span> My projects <em>Soon</em></a>
+      <a class="nav" href="#how-it-works"><span>◷</span> How it works</a>
+      <div class="sidebar-bottom">
+        <div class="credit-card"><div class="credit-icon">✧</div><b>Starter workspace</b><p>Build and preview your video idea.</p><div class="credit-meter"><i></i></div><small>Demo mode · no AI credits used</small></div>
+        <div class="profile"><div class="avatar">dL</div><div><b>dhaLewis Studio</b><small>Creator workspace</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">▶</span> dhaLewis <b>Studio</b></div>
+        <div class="breadcrumb">Workspace <span>/</span> <b>Create video</b></div>
+        <div class="top-actions"><span class="status-dot"></span><span class="status-text">Starter version</span><button class="upgrade" type="button" id="upgradeBtn">Upgrade later ↗</button></div>
+      </header>
+
+      <section class="hero">
+        <div class="eyebrow"><span class="sparkle">✦</span> YOUR IDEAS, BROUGHT TO LIFE</div>
+        <h1>Turn a prompt into<br><span>something incredible.</span></h1>
+        <p>Describe the video you imagine. Choose your style and format, then prepare your project.</p>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="panel prompt-panel">
+          <div class="panel-heading"><div><span class="step">01</span><h2>Describe your video</h2></div><span class="optional">Be descriptive</span></div>
+          <label class="field-label" for="prompt">YOUR VIDEO PROMPT</label>
+          <textarea id="prompt" maxlength="2000" placeholder="Example: A funny Nigerian student walks into class and discovers that the new teacher is a robot. Warm afternoon light, lively school atmosphere, expressive characters, cinematic camera movement, and a surprising ending..."></textarea>
+          <div class="textarea-footer"><span>Tip: describe the subject, setting, action, and mood.</span><span id="charCount">0 / 2000</span></div>
+          <div class="quick-prompts">
+            <button type="button" data-prompt="A hilarious Nigerian family argues over who finished the last piece of jollof rice. Colourful living room, expressive reactions, fast comedic timing, and an unexpected twist.">🇳🇬 Nigerian comedy</button>
+            <button type="button" data-prompt="A cinematic mystery: a glowing door appears in the middle of a quiet forest at midnight. Fog drifts between the trees as the camera slowly moves closer. Strange, beautiful, suspenseful atmosphere.">🌌 Visual mystery</button>
+            <button type="button" data-prompt="A clear, engaging educational animation explaining why ice floats on water. Show water molecules, simple visual comparisons, smooth transitions, and a memorable final reveal.">🧪 Science explainer</button>
+          </div>
+          <div class="divider"></div>
+          <div class="panel-heading compact"><div><span class="step">02</span><h2>Customise your video</h2></div></div>
+          <div class="settings-grid">
+            <div class="setting">
+              <label class="field-label" for="style">VISUAL STYLE</label>
+              <select id="style"><option value="cinematic">Cinematic</option><option value="realistic">Realistic</option><option value="cartoon">3D cartoon</option><option value="anime">Anime</option><option value="horror">Horror / suspense</option><option value="documentary">Documentary</option></select>
+            </div>
+            <div class="setting">
+              <label class="field-label" for="format">VIDEO FORMAT</label>
+              <select id="format"><option value="9:16">Vertical · Shorts (9:16)</option><option value="16:9">Landscape · YouTube (16:9)</option><option value="1:1">Square · Social (1:1)</option></select>
+            </div>
+            <div class="setting">
+              <label class="field-label" for="duration">TARGET LENGTH</label>
+              <select id="duration"><option value="5">5 seconds · Quick clip</option><option value="10" selected>10 seconds · Short clip</option><option value="20">20 seconds · Multi-shot plan</option><option value="30">30 seconds · Multi-shot plan</option><option value="60">60 seconds · Storyboard plan</option></select>
+            </div>
+            <div class="setting">
+              <label class="field-label" for="voice">VOICEOVER PLAN</label>
+              <select id="voice"><option value="none">No voiceover</option><option value="narration">Narration</option><option value="character">Character dialogue</option></select>
+            </div>
+          </div>
+          <div class="toggle-row"><div class="toggle-copy"><b>Plan background music</b><small>Suggest a fitting music mood for the edit.</small></div><label class="switch"><input id="music" type="checkbox" checked><span></span></label></div>
+          <button class="generate-btn" type="button" id="generateBtn"><span>✦</span> Prepare my video <b>→</b></button>
+          <p class="fine-print">This starter version creates a project brief. Real video rendering requires connecting a video-generation API.</p>
+        </div>
+
+        <div class="right-column">
+          <div class="panel preview-panel">
+            <div class="preview-head"><div><span class="step">PREVIEW</span><h2>Your creative canvas</h2></div><span class="live-badge"><i></i> READY</span></div>
+            <div class="preview-canvas" id="previewCanvas">
+              <div class="preview-glow"></div><div class="preview-orbit orbit-one"></div><div class="preview-orbit orbit-two"></div>
+              <div class="preview-play">▶</div>
+              <div class="preview-caption"><span>YOUR NEXT IDEA STARTS HERE</span><b id="previewTitle">A story waiting to happen.</b></div>
+              <div class="aspect-tag" id="aspectTag">9:16 · VERTICAL</div>
+            </div>
+            <div class="preview-meta"><span><i class="tiny-dot"></i> No video generated yet</span><span id="durationMeta">Target: 10 sec</span></div>
+          </div>
+          <div class="panel output-panel" id="outputPanel">
+            <div class="output-icon">✧</div><div><h3>Your project brief appears here</h3><p>Write a prompt and select <b>Prepare my video</b> to build a production brief.</p></div>
+          </div>
+          <div class="note-card"><span class="note-icon">ⓘ</span><div><b>About AI generation</b><p>This website is a front-end starter. It does not pretend to generate a real video yet. Connect a supported provider on the server to enable rendering securely.</p></div></div>
+        </div>
+      </section>
+
+      <section class="lower-section" id="how-it-works"><div><span class="eyebrow">SIMPLE WORKFLOW</span><h2>From idea to video</h2></div><div class="workflow"><div><span>1</span><b>Describe</b><small>Write your scene</small></div><div><span>2</span><b>Customise</b><small>Pick format and style</small></div><div><span>3</span><b>Generate</b><small>Connect an AI provider</small></div><div><span>4</span><b>Export</b><small>Preview and download</small></div></div></section>
+      <footer><span>© 2026 dhaLewis AI Video Studio</span><span>Made for creators · Starter build</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
